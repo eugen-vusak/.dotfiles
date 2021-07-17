@@ -1,0 +1,69 @@
+configuration {
+	modi: "combi,calc,file-browser-extended,ssh,Emoji»:/usr/bin/rofimoji";
+	show-icons: true;
+	ssh-client: "ssh";
+	ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";
+	run-command: "{cmd}";
+	icon-theme: "Papirus-Dark-Maia";
+	drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
+	parse-known-hosts: true;
+	combi-modi: "window,drun,run,ssh";
+	combi-hide-mode-prefix: true;
+	pid: "/run/user/1000/rofi.pid";
+	display-combi:"»" ;
+	display-window: "Windows»";
+	display-run: "Run»";
+	display-drun: "Applications»";
+	display-file-browser-extended: "Files»";
+	display-calc: "Calc»";
+	monitor: "-1";
+}
+
+* {
+  background-color: 							#2D2D2D44;
+  border-color: 									#212121;
+  border-radius: 									10;
+  text-color: 										#dddddd;
+  spacing: 												0;
+  width:													40%;
+  location:                       center;
+  x-offset:                       0;
+  y-offset:                       0;
+  columns:												2;
+}
+
+
+inputbar {
+  border: 0 0 1px 0;
+  children: [prompt,entry];
+}
+
+prompt {
+  padding: 14px;
+
+  border: 0 1px 0 0;
+}
+
+textbox {
+  background-color: #2D2D2D44;
+  border: 0 0 1px 0;
+  border-color: #21212177;
+  padding: 8px 14px;
+}
+
+entry {
+  padding: 14px;
+}
+
+listview {
+  cycle: false;
+  scrollbar: false;
+}
+
+element {
+  padding: 14px;
+}
+
+element selected {
+  background-color: #21212177;
+}
