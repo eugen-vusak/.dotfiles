@@ -1,0 +1,47 @@
+#! /bin/sh
+gap=8
+PANEL_HEIGHT=24
+export gap
+export PANEL_HEIGHT
+
+#This creates negative padding equal to window gap so that gaps are shown only between windows and not on desktop edges.
+bspc config window_gap 					$gap
+bspc config top_padding 				0
+# bspc config left_padding 				-$gap
+# bspc config right_padding 				-$gap
+# bspc config bottom_padding 				-$gap
+
+# various bspwm settings
+bspc config gapless_monocle 			true
+bspc config borderless_monocle 			true
+bspc config single_monocle 				true
+
+# split ratio
+bspc config split_ratio 				0.5
+
+# Color settings
+bspc config focused_border_color 		"#FFFFFF"
+bspc config normal_border_color 		"#353535"
+# bspc config presel_feedback_color 		"#8F8F8F"
+bspc config border_width 				0
+
+# Super key hack
+xcape -e 'Super_L=Super_L|Shift_L|space' &
+# xmodmap -e 'keysym Super_R = ISO_Level3_Shift'
+
+# start sxhkd
+pgrep -x sxhkd >/dev/null || sxhkd &
+
+bspc monitor -d 1 2 3 4 5 6 7 8 9 10
+sh ~/.fehbg &
+$HOME/.config/polybar/launch.sh --forest
+
+# autostart
+$HOME/.config/bspwm/autostart
+
+# bspwm rules
+bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a Chromium desktop='^2'
+bspc rule -a mplayer2 state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
