@@ -9,7 +9,7 @@ super + shift + {q,r}
 # Show keybindings
 super + F1
 	$TERMINAL -e keybindings.sh
-	
+
 # # Show keybindings (rofi)
 # super + F2
 #    $TERMINAL -e show-help
@@ -31,10 +31,10 @@ super + t
 # Force all windows of the desktop to tile/float
 super + ctrl + {t,f}
 	bspcp {tile,float}
-	
-# Toggle fullscreen
-super + shift + f 
-	bspc node -t {fullscreen,tiled}	
+
+# # Toggle fullscreen
+# super + shift + f
+# 	bspc node -t {fullscreen,tiled}
 
 # Try to keep size and position of the selected window
 super + o
@@ -54,7 +54,7 @@ super + i
 
 #
 # Window moving and splitting
-# ______________    
+# ______________
 
 # Presel window for splitting in certain direction
 super + alt + {h,j,k,l}
@@ -75,7 +75,7 @@ super + alt + {1-9}
 # Cancel presel
 super + alt + space
 	bspc node -p cancel
-		
+
 # Move current window to largest space or preselected area if there is one.
 super + g
     windowpromoter
@@ -83,14 +83,14 @@ super + g
 # Create a new "master area", splitting the whole desktop instead of just windows.
 # alt + Return
 # 	bspc node -n @/
-	
+
 # go (Shift=move) to desktop (and focus the monitor that the desktop is located on. Bspwm style)
 super + {_,shift +} {1-9,0}
     bspc {desktop -f,node -d} ^{1-9,10}
 
 # Select previous / next desktop
-super + {_,shift +} Tab 
-	bspc desktop -f {prev,next}.occupied 
+super + {_,shift +} Tab
+	bspc desktop -f {prev,next}.occupied
 
 # cycle windows
 alt + {_,shift + }Tab
@@ -99,7 +99,7 @@ alt + {_,shift + }Tab
 # # Go to specific window
 # super + Tab
 # 	WindowSelector
-	
+
 #Focus windows by direction, works with multihead
 # focus the node in the given direction
 super + {h,j,k,l}
@@ -107,8 +107,8 @@ super + {h,j,k,l}
 super +{Left,Down,Up,Right}
     bspc node -f {west,south,north,east}
 
-# Move tiled windows. Moving a tiled window to 
-# preselected one moves into preselection instead. 
+# Move tiled windows. Moving a tiled window to
+# preselected one moves into preselection instead.
 super + shift + {h,j,k,l}
 	windowgrabber {west,south,north,east}
 	# bspc node -n {west,south,north,east}
@@ -134,6 +134,7 @@ super + ctrl + {Left,Down,Up,Right}
 super + f
 	bspc desktop -l next
 
+
 # # Balance tree
 # super + b
 # 	bspc node @/ -B
@@ -153,7 +154,7 @@ super + ctrl + b
 # Mirror and flip leaves of tree
 super + {comma,period}
 	bspc node @/ -F {horizontal,vertical}
-	
+
 # Rotate leaves of tree
 super + shift + {comma,period}
 	bspc node @/ -R {90,270}
@@ -166,12 +167,12 @@ super + button{4,5}
 # __________________
 
 # ~button1
-# 	DidIClickDesktop.sh && gapgrab	
+# 	DidIClickDesktop.sh && gapgrab
 
 # ~button2
 # 	DidIClickDesktop.sh && mygtkmenui -- .config/GTKmenu/BspwmDesktopMenui
 # #DidIClickDesktop.sh && mygtkmenui -- .config/GTKmenu/BspwmWindowMenui
-		
+
 # ~button3
 # 	DidIClickDesktop.sh && mygtkmenui -- .config/GTKmenu/LaunchMenu
 
@@ -180,7 +181,7 @@ super + button{4,5}
 #	DidIClickDesktop.sh && bspc desktop -f next
 #~button5
 #	DidIClickDesktop.sh && bspc desktop -f prev
-	
+
 # ### Add or remove desktops by scrolling
 # super + ctrl + button5
 #     bspcp dsktp rm
@@ -188,10 +189,10 @@ super + button{4,5}
 # super + ctrl + button4
 #     bspcp dsktp add
 
-# Spawn applications popup menu and manually tile selected 
+# Spawn applications popup menu and manually tile selected
 # app where your mouse was when you opened the menu. Smartsplit only chooses
 # biggest dimension of the window, MouseLaunch only cares which edge is closer.
-# mod5 is alt_gr (first key right from space) on most keyboards. 
+# mod5 is alt_gr (first key right from space) on most keyboards.
 mod5 + @button1
     MouseLaunch ; mygtkmenui -- .config/GTKmenu/LaunchMenu
 #	smartsplit ; dboxmenu
@@ -212,7 +213,7 @@ super + space
 
 # Triggered by just tapping LEFT super key
 super + shift + space
-	rofi -show 
+	rofi -show
 
 # Triggered by just tapping RIGHT super key
 # super + shift + space + z
@@ -221,7 +222,7 @@ super + shift + space
 # # Launch fzf Pacsearch
 # super + p
 # 	$TERMINAL -e pacfzf
-	
+
 # # Launch fzf Yaysearch
 # super + y
 # 	$TERMINAL -e yayfzf
@@ -231,7 +232,7 @@ super + Return
 
 # super + shift + Return
 # 	open-terminal-here
-	
+
 super + w
 	$BROWSER --new-tab
 
@@ -265,8 +266,8 @@ super + b
 super + c
 	rofi -show calc -modi calc -no-show-match -no-sort
 
-# Bitwardern menu 
-super + v 
+# Bitwardern menu
+super + v
 	bwmenu
 
 #

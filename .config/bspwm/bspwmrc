@@ -40,6 +40,8 @@ $HOME/.config/polybar/launch.sh --forest
 $HOME/.config/bspwm/autostart
 
 # bspwm rules
+## use `xprop | grep WM_CLASS` to get windows name
+bspc rule -a Pavucontrol state=floating follow=on
 bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a Chromium desktop='^2'
 bspc rule -a mplayer2 state=floating
