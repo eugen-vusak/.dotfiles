@@ -1,5 +1,5 @@
 configuration {
-	modi: "combi,calc,file-browser-extended,ssh,Emoji»:/usr/bin/rofimoji";
+	modi: "combi,calc,ssh,Emoji»:/usr/bin/rofimoji";
 	show-icons: true;
 	ssh-client: "ssh";
 	ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";
@@ -14,9 +14,10 @@ configuration {
 	display-window: "Windows»";
 	display-run: "Run»";
 	display-drun: "Applications»";
-	display-file-browser-extended: "Files»";
+	//display-file-browser-extended: "Files»";
 	display-calc: "Calc»";
 	monitor: "-1";
+	theme: "slate";
 }
 
 * {

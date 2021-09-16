@@ -1,39 +1,36 @@
+# Status bar
+$HOME/.config/polybar/launch.sh --forest 				&
+
 # Composite manager
-run_once picom --experimental-backends
+picom --experimental-backends 							&
+
+# Wallpaper
+sh ~/.fehbg 											&
 
 # Numlock on
-run_once numlockx
+numlockx												&
 
-# enable local fonts in .fonts directory
-xset +fp /usr/share/fonts/local &
-xset +fp /usr/share/fonts/misc &
-xset +fp ~/.fonts &
-xset fp rehash &
-fc-cache -fv &
-
-# Run screenlock when suspending
-# run_once light-locker
+# # enable local fonts in .fonts directory
+# xset +fp /usr/share/fonts/local &
+# xset +fp /usr/share/fonts/misc &
+# xset +fp ~/.fonts &
+# xset fp rehash &
+# fc-cache -fv &
 
 # Thunar deamon
-thunar --daemon &
+thunar --daemon 										&
 
 # Automount removable media
-devmon &
-
-# Power manager
-xfce4-power-manager --deamon &
-
-# Notification deamon
-run_once /usr/lib/xfce4/notifyd/xfce4-notifyd
+devmon 													&
 
 # start mpris (for bluetooth media buttons)
-run_once mpris-proxy
+mpris-proxy												&
 
 # Gestures
-run_once libinput-gestures
+libinput-gestures 										&
 
 # Remove mouse from screen when not used
-run_once unclutter
+unclutter 												&
 
 # autostart desktop entries
-dex -a &
+dex -a 													&

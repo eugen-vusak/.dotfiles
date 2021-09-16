@@ -33,8 +33,8 @@ xcape -e 'Super_L=Super_L|Shift_L|space' &
 pgrep -x sxhkd >/dev/null || sxhkd &
 
 bspc monitor -d 1 2 3 4 5 6 7 8 9 10
-sh ~/.fehbg &
-$HOME/.config/polybar/launch.sh --forest
+
+setxkbmap -model pc104 -layout us -variant colemak
 
 # autostart
 $HOME/.config/bspwm/autostart

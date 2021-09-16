@@ -1,6 +1,6 @@
-#
+#################################################
 # bspwm hotkeys
-#
+#################################################
 
 # Cleanly quit bspwm
 super + shift + {q,r}
@@ -10,13 +10,10 @@ super + shift + {q,r}
 super + F1
 	$TERMINAL -e keybindings.sh
 
-# # Show keybindings (rofi)
-# super + F2
-#    $TERMINAL -e show-help
 
-#
+#################################################
 # Window manipulation
-# ______________
+#################################################
 
 # close and kill
 super + {_,ctrl + }q
@@ -52,9 +49,10 @@ super + i
 # super + ctrl + c
 #     whid last
 
-#
+
+#################################################
 # Window moving and splitting
-# ______________
+#################################################
 
 # Presel window for splitting in certain direction
 super + alt + {h,j,k,l}
@@ -126,12 +124,13 @@ super + ctrl + {h,j,k,l}
 super + ctrl + {Left,Down,Up,Right}
 	bspwm_resize.sh {west,south,north,east}
 
-#
+
+#################################################
 # Layout manipulation/desktop level controls
-# ______________
+#################################################
 
 # Toggle monocle mode
-super + f
+super + shift + f
 	bspc desktop -l next
 
 
@@ -162,95 +161,23 @@ super + shift + {comma,period}
 # Change window gap
 super + button{4,5}
 	bspc config -d focused window_gap $((`bspc config -d focused window_gap` {+,-} 2 ))
-#
-# mouse bindings
-# __________________
 
-# ~button1
-# 	DidIClickDesktop.sh && gapgrab
 
-# ~button2
-# 	DidIClickDesktop.sh && mygtkmenui -- .config/GTKmenu/BspwmDesktopMenui
-# #DidIClickDesktop.sh && mygtkmenui -- .config/GTKmenu/BspwmWindowMenui
+#################################################
+# rofi menus
+#################################################
 
-# ~button3
-# 	DidIClickDesktop.sh && mygtkmenui -- .config/GTKmenu/LaunchMenu
-
-# Switch workspace by scrolling on the desktop. Causes scrolling issues on some systems.
-#~button4
-#	DidIClickDesktop.sh && bspc desktop -f next
-#~button5
-#	DidIClickDesktop.sh && bspc desktop -f prev
-
-# ### Add or remove desktops by scrolling
-# super + ctrl + button5
-#     bspcp dsktp rm
-
-# super + ctrl + button4
-#     bspcp dsktp add
-
-# Spawn applications popup menu and manually tile selected
-# app where your mouse was when you opened the menu. Smartsplit only chooses
-# biggest dimension of the window, MouseLaunch only cares which edge is closer.
-# mod5 is alt_gr (first key right from space) on most keyboards.
-mod5 + @button1
-    MouseLaunch ; mygtkmenui -- .config/GTKmenu/LaunchMenu
-#	smartsplit ; dboxmenu
-
-# Spawn window manipulation menuq
-# Mod1 is alt
-#    BspwmWindowMenu
-mod1 + @button2
-    mygtkmenui -- .config/GTKmenu/BspwmWindowMenui
-
-#
-# spawn programs
-#
-
-# run applications
-super + space
-	dmenu_recent -fn 'xos4 Terminus:size=15' -i -l 14 -w 600 -y $PANEL_HEIGHT
-
-# Triggered by just tapping LEFT super key
+# Applications menu
+## Triggered by just tapping LEFT super key
 super + shift + space
 	rofi -show
 
-# Triggered by just tapping RIGHT super key
-# super + shift + space + z
-# 	hidePanel
 
-# # Launch fzf Pacsearch
-# super + p
-# 	$TERMINAL -e pacfzf
-
-# # Launch fzf Yaysearch
-# super + y
-# 	$TERMINAL -e yayfzf
-
-super + Return
-	default-terminal
-
-# super + shift + Return
-# 	open-terminal-here
-
-super + w
-	$BROWSER --new-tab
-
-super + e
-	thunar
-
-Print
-	xfce4-screenshooter
-
-#
-# rofi menus
-#
-
-# Search files
+# Files menu
 super + r
 	rofi-finder.sh
 
-# Show clipboard
+# Clipboard menu
 super + x
 	rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 
@@ -262,25 +189,55 @@ super + n
 super + b
 	rofi-bluetooth
 
-# calculator menu
+# Calculator menu
 super + c
 	rofi -show calc -modi calc -no-show-match -no-sort
 
-# Bitwardern menu
+# Bitwarden menu
 super + v
 	bwmenu
 
-#
+
+#################################################
+# spawn programs
+#################################################
+
+super + Return
+	default-terminal
+
+super + w
+	$BROWSER --new-tab
+
+super + f
+	thunar
+
+Print
+	xfce4-screenshooter
+
+# super + shift + Return
+# 	open-terminal-here
+
+# # Launch fzf Pacsearch
+# super + p
+# 	$TERMINAL -e pacfzf
+
+# # Launch fzf Yaysearch
+# super + y
+# 	$TERMINAL -e yayfzf
+
+
+#################################################
 # Media keys
-#
+#################################################
+
 XF86MonBrightness{Up,Down}
  	xbacklight -{inc,dec} 5
 
 XF86AudioMute
-	pulseaudio-ctl mute
+	pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 XF86Audio{Lower,Raise}Volume
-	pulseaudio-ctl {down,up} 5
+	pactl set-sink-volume @DEFAULT_SINK@ {-,+}5%
 
 XF86Audio{Play,Prev,Next}
  	playerctl {play-pause,previous,next}
@@ -292,9 +249,9 @@ shift + F9
 	systemctl suspend
 
 
-#
+#################################################
 # Other
-#
+#################################################
 
 # # make sxhkd reload its configuration files:
 super + Escape
