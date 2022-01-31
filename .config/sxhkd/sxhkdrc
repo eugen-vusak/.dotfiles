@@ -1,4 +1,4 @@
-#################################################
+_#################################################
 # bspwm hotkeys
 #################################################
 
@@ -29,9 +29,9 @@ super + t
 super + ctrl + {t,f}
 	bspcp {tile,float}
 
-# # Toggle fullscreen
-# super + shift + f
-# 	bspc node -t {fullscreen,tiled}
+`# Toggle fullscreen
+super + shift + f
+	bspc node -t {fullscreen,tiled}`
 
 # Try to keep size and position of the selected window
 super + o
@@ -130,7 +130,7 @@ super + ctrl + {Left,Down,Up,Right}
 #################################################
 
 # Toggle monocle mode
-super + shift + f
+super + shift + c
 	bspc desktop -l next
 
 
@@ -253,7 +253,11 @@ shift + F9
 # Other
 #################################################
 
-# # make sxhkd reload its configuration files:
+# swhich keyboard layout
+super + space
+	xkb-switch -n
+
+# make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
 

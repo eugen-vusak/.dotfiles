@@ -1,11 +1,11 @@
+# Wallpaper
+~/.fehbg                                        		&
+
 # Status bar
-$HOME/.config/polybar/launch.sh --forest 				&
+$HOME/.config/polybar/launch.sh                         &
 
 # Composite manager
 picom --experimental-backends 							&
-
-# Wallpaper
-sh ~/.fehbg 											&
 
 # Numlock on
 numlockx												&

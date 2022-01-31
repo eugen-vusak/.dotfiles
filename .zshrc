@@ -111,3 +111,9 @@ PERL5LIB="/home/euzenmendenzien/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; expor
 PERL_LOCAL_LIB_ROOT="/home/euzenmendenzien/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/euzenmendenzien/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/euzenmendenzien/perl5"; export PERL_MM_OPT;
+
+# Import colorscheme from 'wal' asynchronously
+# &   # Run the process in the background.
+# ( ) # Hide shell job control messages.
+# Not supported in the "fish" shell.
+(cat ~/.cache/wal/sequences &)

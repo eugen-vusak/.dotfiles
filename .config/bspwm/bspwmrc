@@ -1,49 +1,84 @@
 #! /bin/sh
-gap=8
+gap=5
 PANEL_HEIGHT=24
 export gap
 export PANEL_HEIGHT
 
-#This creates negative padding equal to window gap so that gaps are shown only between windows and not on desktop edges.
-bspc config window_gap 					$gap
-bspc config top_padding 				0
-# bspc config left_padding 				-$gap
-# bspc config right_padding 				-$gap
-# bspc config bottom_padding 				-$gap
+# source the colors.
+. "${HOME}/.cache/wal/colors.sh"
 
-# various bspwm settings
-bspc config gapless_monocle 			true
-bspc config borderless_monocle 			true
-bspc config single_monocle 				true
+userresources=$HOME/.Xresources
+usermodmap=$HOME/.Xmodmap
+sysresources=/etc/X11/xinit/.Xresources
+sysmodmap=/etc/X11/xinit/.Xmodmap
+walresources=$HOME/.cache/wal/colors.Xresources
 
-# split ratio
-bspc config split_ratio 				0.5
+# merge in defaults and keymaps
+if [ -f $sysresources ]; then
+    xrdb -merge $sysresources
+fi
 
-# Color settings
-bspc config focused_border_color 		"#FFFFFF"
-bspc config normal_border_color 		"#353535"
-# bspc config presel_feedback_color 		"#8F8F8F"
-bspc config border_width 				0
+if [ -f $sysmodmap ]; then
+    xmodmap $sysmodmap
+fi
 
-# Super key hack
-xcape -e 'Super_L=Super_L|Shift_L|space' &
-# xmodmap -e 'keysym Super_R = ISO_Level3_Shift'
+if [ -f "$userresources" ]; then
+    xrdb -merge "$userresources"
+fi
+
+if [ -f "$walresources" ]; then
+    xrdb -merge "$walresources"
+fi
+
+if [ -f "$usermodmap" ]; then
+    xmodmap "$usermodmap"
+fi
 
 # start sxhkd
 pgrep -x sxhkd >/dev/null || sxhkd &
 
-bspc monitor -d 1 2 3 4 5 6 7 8 9 10
+#This creates negative padding equal to window gap so that gaps are shown only between windows and not on desktop edges.
+bspc config window_gap 					$gap
+bspc config top_padding 				0
+bspc config left_padding 				0
+bspc config right_padding 				0
+bspc config bottom_padding 				0
 
-setxkbmap -model pc104 -layout us -variant colemak
+# various bspwm settings                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                l``
+bspc config gapless_monocle 			false
+bspc config borderless_monocle 			true
+bspc config single_monocle 				true
+bspc config border_width 				3
+
+# split ratio
+bspc config split_ratio 				0.5
+
+
+# Color settings
+bspc config normal_border_color "$color1"
+bspc config active_border_color "$color2"
+bspc config focused_border_color "$color15"
+bspc config presel_feedback_color "$color1"
+
+# Super key hack
+xcape -e 'Super_L=Super_L|Shift_L|space' &
+
+# set desktops
+$HOME/.screenlayout/docked.sh
+bspc wm --reorder-monitors HDMI1 eDP1
+bspc monitor HDMI1 -d 1 2 3 4 5
+bspc monitor eDP1 -d 6 7 8 9 10
+
+setxkbmap -model pc104 -layout us,hr -variant colemak,us
+# xmodmap -e "keycode 22=NoSymbol"
 
 # autostart
 $HOME/.config/bspwm/autostart
 
+# wal -R
+
 # bspwm rules
 ## use `xprop | grep WM_CLASS` to get windows name
 bspc rule -a Pavucontrol state=floating follow=on
-bspc rule -a Gimp desktop='^8' state=floating follow=on
-bspc rule -a Chromium desktop='^2'
-bspc rule -a mplayer2 state=floating
-bspc rule -a Kupfer.py focus=on
-bspc rule -a Screenkey manage=off
+bspc rule -a Mailspring desktop=9 follow=on
+bspc rule -a "Microsoft Teams - Preview" desktop=8 follow=on

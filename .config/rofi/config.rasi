@@ -17,7 +17,7 @@ configuration {
 	//display-file-browser-extended: "Files»";
 	display-calc: "Calc»";
 	monitor: "-1";
-	theme: "slate";
+	// theme: "slate";
 }
 
 * {
